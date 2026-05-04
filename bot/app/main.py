@@ -3,21 +3,24 @@ import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
 
-API_TOKEN = 'YOUR_BOT_TOKEN'
+API_TOKEN = '7743419348:AAGfAgO9BfN0ri4upy0Rl_y3p10sMu9axm0'
 WEBAPP_URL = 'https://tcoc-frontend.render.com'
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+# Using aiogram 3.x style
+from aiogram import F
+from aiogram.filters import Command
+from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 
-@dp.message_handler(commands=['start'])
+bot = Bot(token=API_TOKEN)
+dp = Dispatcher()
+
+@dp.message(Command("start"))
 async def send_welcome(message: types.Message):
-    keyboard = types.InlineKeyboardMarkup()
-    keyboard.add(types.InlineKeyboardButton(
-        text="Play TCOC ⚔️",
-        web_app=types.WebAppInfo(url=WEBAPP_URL)
-    ))
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Play TCOC ⚔️", web_app=WebAppInfo(url=WEBAPP_URL))]
+    ])
 
     await message.reply(
         "Welcome to **TON Clash of Clans**! 🏰\n\n"
@@ -26,5 +29,8 @@ async def send_welcome(message: types.Message):
         parse_mode="Markdown"
     )
 
+async def main():
+    await dp.start_polling(bot)
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    asyncio.run(main())
