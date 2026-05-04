@@ -33,3 +33,7 @@ WARNING:aiogram.dispatcher:Sleep for 5.132175 seconds and try again... (tryings 
 ERROR:aiogram.dispatcher:Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
 WARNING:aiogram.dispatcher:Sleep for 5.074701 seconds and try again... (tryings = 12, bot id = 7743419348)
 INFO:aiogram.dispatcher:Connection established (tryings = 13, bot id = 7743419348)
+WARNING:aiogram.dispatcher:Received SIGTERM signal
+INFO:aiogram.dispatcher:Polling stopped for bot @ClashofCrypto_bot id=7743419348 - 'Clash of Crypto'
+INFO:aiogram.dispatcher:Polling stopped
+Starting bot @ClashofCrypto_bot...
